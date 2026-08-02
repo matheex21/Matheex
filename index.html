@@ -342,6 +342,30 @@
   }
   .btn-link:hover{ color:var(--white); }
 
+  /* ---------- Sponsorship ---------- */
+  .sponsor{ background:var(--bg); }
+  .sponsor-grid{ display:grid; grid-template-columns: 1fr 1fr; gap:3rem; align-items:center; }
+  .sponsor-types{ display:flex; flex-direction:column; gap:0.9rem; margin: 1.6rem 0 2rem; }
+  .sponsor-type{
+    display:flex; align-items:center; gap:0.8rem;
+    background:var(--bg-card); border:1px solid var(--line); border-radius:4px;
+    padding:0.9rem 1.1rem; font-family:var(--font-si); font-size:0.98rem; color:#d3d2ce;
+  }
+  .sponsor-type::before{ content:''; width:8px; height:8px; background:var(--red); transform:rotate(45deg); flex-shrink:0; }
+  .sponsor-type strong{ font-family:var(--font-display); color:var(--white); font-weight:700; margin-right:0.3rem; }
+  .sponsor-card{
+    background:var(--bg-card); border:1px solid var(--line); border-radius:6px;
+    padding:2.2rem; text-align:center;
+  }
+  .sponsor-card p.lead{ font-family:var(--font-si); color:#c9c8c4; margin-bottom:1.6rem; font-size:1rem; }
+  .sponsor-email{
+    font-family:var(--font-display); font-weight:700; font-size:1.1rem; color:var(--red);
+    word-break:break-all; margin-bottom:1.4rem; display:block;
+  }
+  @media (max-width: 980px){
+    .sponsor-grid{ grid-template-columns:1fr; }
+  }
+
   /* ---------- Subscribe CTA ---------- */
   .subscribe{
     background: linear-gradient(135deg, var(--bg-raised), var(--bg));
@@ -397,6 +421,7 @@
     <a href="#about">About</a>
     <a href="#videos">Videos</a>
     <a href="#comments">Comments</a>
+    <a href="contact.html">Sponsorship</a>
     <a href="#subscribe">Subscribe</a>
   </nav>
   <a class="nav-cta" href="https://youtube.com/@matheex?si=MYj39L32cIrYaUPr" target="_blank" rel="noopener">Subscribe</a>
@@ -516,6 +541,27 @@ Technology ගැන කැමතිනම්, SUBSCRIBE කරලා අලු�
     </div>
   </section>
 
+  <section class="sponsor" id="sponsor">
+    <div class="section-inner">
+      <div class="sponsor-grid">
+        <div>
+          <p class="eyebrow">For Brands</p>
+          <h2 class="section-title">Let's work <span class="x">together.</span></h2>
+          <p class="section-desc">Phone, gadget, or app එකක් feature කරන්න ඕන brands ලට MatheeX open.</p>
+          <div class="sponsor-types">
+            <div class="sponsor-type"><strong>Sponsored Review</strong> — full video review එකක්</div>
+            <div class="sponsor-type"><strong>Unboxing Feature</strong> — නව product එකක් unbox කිරීම</div>
+            <div class="sponsor-type"><strong>Brand Mention</strong> — video එකක් ඇතුලේ shoutout</div>
+          </div>
+        </div>
+        <div class="sponsor-card">
+          <p class="lead">Collaboration එකක් discuss කරන්න, හෝ private ම කියන්න ඕන දෙයක් තියෙනවනම් — form එකෙන් යවන්න, කෙලින්ම මගේ email එකට එනවා.</p>
+          <a class="btn-primary" href="contact.html">Send an Inquiry</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="subscribe" id="subscribe">
     <div class="bolt" style="width:140px; height:260px; top:0; left:6%; opacity:0.18;" aria-hidden="true"></div>
     <div class="bolt" style="width:140px; height:260px; bottom:0; right:6%; opacity:0.18; transform:rotate(180deg);" aria-hidden="true"></div>
@@ -539,7 +585,7 @@ Technology ගැන කැමතිනම්, SUBSCRIBE කරලා අලු�
   <div class="footer-links">
     <a href="https://youtube.com/@matheex?si=MYj39L32cIrYaUPr" target="_blank" rel="noopener">YouTube</a>
     <a href="#videos">Videos</a>
-    <a href="#about">About</a>
+    <a href="contact.html">Business</a>
   </div>
 </footer>
 
