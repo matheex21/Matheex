@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Business Inquiries — MatheeX</title>
+<meta name="description" content="MatheeX සමග Sponsorship, business collabs, හෝ private matters සම්බන්ධ වෙන්න.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Noto+Sans+Sinhala:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#07070a;
+    --bg-raised:#0e0e12;
+    --bg-card:#131317;
+    --red:#ff1e2d;
+    --red-deep:#7a0f16;
+    --red-glow: rgba(255,30,45,0.45);
+    --white:#f4f3f0;
+    --muted:#93939b;
+    --line: rgba(244,243,240,0.09);
+    --font-display: 'Rajdhani', 'Inter', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    --font-si: 'Noto Sans Sinhala', 'Inter', sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0; background:var(--bg); color:var(--white);
+    font-family: var(--font-si), var(--font-body); line-height:1.6; overflow-x:hidden;
+  }
+  a{color:inherit;}
+  ::selection{ background:var(--red); color:#fff; }
+  a:focus-visible, button:focus-visible{ outline:2px solid var(--red); outline-offset:3px; }
+
+  .bolt{
+    position:absolute;
+    background: linear-gradient(160deg, var(--red), var(--red-deep));
+    clip-path: polygon(38% 0, 100% 0, 46% 46%, 78% 46%, 8% 100%, 30% 52%, 0 52%);
+    opacity:0.9; filter: drop-shadow(0 0 18px var(--red-glow)); pointer-events:none;
+  }
+
+  header{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    display:flex; align-items:center; justify-content:space-between;
+    padding: 18px 6vw;
+    background: var(--bg);
+    border-bottom: 1px solid var(--line);
+  }
+  .wordmark{ font-family: var(--font-display); font-weight:700; font-size: 1.5rem; text-decoration:none; }
+  .wordmark span{ color: var(--red); }
+  nav.site-nav{ display:flex; gap: 2.2rem; }
+  nav.site-nav a{
+    font-family: var(--font-display); font-weight:600; font-size:0.95rem; letter-spacing:0.06em;
+    text-transform:uppercase; text-decoration:none; color: var(--muted); transition: color 0.2s;
+  }
+  nav.site-nav a:hover{ color: var(--white); }
+  @media (max-width: 780px){ nav.site-nav{ display:none; } }
+
+  .page-hero{
+    position:relative; padding: 150px 6vw 30px; overflow:hidden;
+  }
+  .page-hero::before{
+    content:''; position:absolute; inset:0;
+    background: radial-gradient(ellipse at 20% 20%, rgba(255,30,45,0.12), transparent 55%);
+    pointer-events:none;
+  }
+  .page-hero-inner{ max-width:1180px; margin:0 auto; position:relative; z-index:2; }
+  .eyebrow{
+    font-family: var(--font-display); font-weight:600; letter-spacing:0.35em;
+    text-transform:uppercase; color:var(--red); font-size:0.82rem; margin-bottom:1.1rem;
+    display:flex; align-items:center; gap:0.7rem;
+  }
+  .eyebrow::before{ content:''; width:26px; height:2px; background:var(--red); display:inline-block; }
+  h1{
+    font-family: var(--font-display); font-weight:700; font-size: clamp(2.2rem, 5vw, 3.4rem);
+    line-height:1.05; margin:0 0 1.1rem; max-width:640px;
+  }
+  h1 .x{ color:var(--red); }
+  .lead{ font-family:var(--font-si); color:#c9c8c4; font-size:1.05rem; margin:0; max-width:560px; }
+
+  main{ max-width:1180px; margin:0 auto; padding: 40px 6vw 110px; position:relative; }
+  .contact-grid{ display:grid; grid-template-columns: 0.85fr 1.15fr; gap:3.2vw; align-items:start; }
+
+  /* ---- left info column ---- */
+  .info-col{ position:sticky; top:110px; }
+  .info-block{ margin-bottom:2.2rem; }
+  .info-block h3{
+    font-family:var(--font-display); font-weight:700; font-size:1.05rem; text-transform:uppercase;
+    letter-spacing:0.03em; color:var(--white); margin:0 0 0.9rem; display:flex; align-items:center; gap:0.6rem;
+  }
+  .info-block h3::before{ content:''; width:8px; height:8px; background:var(--red); transform:rotate(45deg); flex-shrink:0; }
+  .step-list{ display:flex; flex-direction:column; gap:0.9rem; }
+  .step{ display:flex; gap:0.9rem; align-items:flex-start; }
+  .step-num{
+    font-family:var(--font-display); font-weight:700; font-size:0.85rem; color:var(--red);
+    border:1.5px solid rgba(255,30,45,0.5); width:26px; height:26px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center; flex-shrink:0;
+  }
+  .step p{ font-family:var(--font-si); color:#c9c8c4; font-size:0.94rem; margin:0; }
+  .step p strong{ color:var(--white); }
+  .privacy-note{
+    font-family:var(--font-si); color:var(--muted); font-size:0.9rem;
+    display:flex; gap:0.6rem; align-items:flex-start; background:var(--bg-card);
+    border:1px solid var(--line); border-radius:6px; padding:1rem 1.1rem;
+  }
+  .privacy-note span{ color:var(--red); flex-shrink:0; font-size:1.1rem; }
+  .alt-contact{ font-family:var(--font-si); font-size:0.92rem; color:#c9c8c4; }
+  .alt-contact a{ color:var(--red); text-decoration:none; font-weight:600; }
+  .alt-contact a:hover{ text-decoration:underline; }
+
+  /* ---- right form column ---- */
+  .reason-grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap:0.7rem; margin-bottom:1.6rem; }
+  .reason-option{
+    background:var(--bg); border:1px solid var(--line); border-radius:4px;
+    padding:0.85rem 0.6rem; text-align:center; cursor:pointer; transition:all 0.2s;
+    font-family:var(--font-display); font-weight:600; font-size:0.8rem; text-transform:uppercase;
+    letter-spacing:0.02em; color:var(--muted);
+  }
+  .reason-option input{ display:none; }
+  .reason-option.active{ border-color:var(--red); color:var(--white); background:rgba(255,30,45,0.08); box-shadow:0 0 0 1px var(--red) inset; }
+  @media (max-width:560px){ .reason-grid{ grid-template-columns: 1fr 1fr; } }
+
+  form.contact-form{
+    background:var(--bg-card); border:1px solid var(--line); border-radius:8px; padding:2.2rem;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+  }
+  .form-title{ font-family:var(--font-display); font-weight:700; font-size:1.2rem; margin:0 0 1.4rem; }
+  .field{ margin-bottom:1.3rem; }
+  .field-row{ display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+  @media (max-width:560px){ .field-row{ grid-template-columns:1fr; } }
+  .field label{
+    display:block; font-family:var(--font-display); font-weight:600; font-size:0.83rem;
+    text-transform:uppercase; letter-spacing:0.04em; color:var(--muted); margin-bottom:0.5rem;
+  }
+  .field input, .field textarea{
+    width:100%; background:var(--bg); border:1px solid var(--line); color:var(--white);
+    padding:13px 15px; border-radius:2px; font-family:var(--font-si); font-size:0.98rem;
+    transition:border-color 0.2s;
+  }
+  .field textarea{ min-height:150px; resize:vertical; }
+  .field input:focus, .field textarea:focus{ outline:none; border-color:var(--red); }
+  .hp-field{ position:absolute; left:-9999px; width:1px; height:1px; opacity:0; }
+
+  .btn-primary{
+    font-family: var(--font-display); font-weight:700; text-transform:uppercase; font-size:0.92rem;
+    letter-spacing:0.04em; padding:15px 34px; border:0; border-radius:2px; cursor:pointer;
+    background:var(--red); color:#fff; box-shadow: 0 6px 24px rgba(255,30,45,0.25);
+    transition: all 0.25s; width:100%;
+  }
+  .btn-primary:hover{ transform: translateY(-2px); box-shadow: 0 10px 30px var(--red-glow); }
+  .btn-primary:disabled{ opacity:0.5; cursor:not-allowed; transform:none; box-shadow:none; }
+
+  .form-status{
+    margin-top:1.2rem; font-family:var(--font-si); font-size:0.95rem; text-align:center;
+    padding:0.9rem; border-radius:4px; display:none;
+  }
+  .form-status.show{ display:block; }
+  .form-status.ok{ background:rgba(30,180,90,0.12); color:#4ade80; border:1px solid rgba(74,222,128,0.3); }
+  .form-status.err{ background:rgba(255,30,45,0.1); color:var(--red); border:1px solid rgba(255,30,45,0.3); }
+
+  .success-panel{ display:none; text-align:center; padding: 3rem 1rem; }
+  .success-panel.show{ display:block; }
+  .success-panel .check{
+    width:60px; height:60px; border-radius:50%; background:rgba(74,222,128,0.12);
+    display:flex; align-items:center; justify-content:center; margin:0 auto 1.3rem;
+  }
+  .success-panel h2{ font-family:var(--font-display); font-size:1.5rem; margin:0 0 0.6rem; }
+  .success-panel p{ font-family:var(--font-si); color:#c9c8c4; margin:0; }
+
+  @media (max-width: 900px){
+    .contact-grid{ grid-template-columns:1fr; }
+    .info-col{ position:static; order:2; }
+    form.contact-form{ order:1; }
+  }
+
+  footer{
+    padding: 40px 6vw; border-top:1px solid var(--line); text-align:center;
+  }
+  footer p{ color:var(--muted); font-size:0.85rem; font-family:var(--font-si); }
+  footer a{ color:var(--red); text-decoration:none; }
+</style>
+</head>
+<body>
+
+<header>
+  <a href="index.html" class="wordmark">Mathee<span>X</span></a>
+  <nav class="site-nav">
+    <a href="index.html">Home</a>
+    <a href="index.html#videos">Videos</a>
+    <a href="index.html#comments">Comments</a>
+  </nav>
+</header>
+
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <p class="eyebrow">Get in touch</p>
+    <h1>Sponsorship &amp; <span class="x">Private</span> Inquiries</h1>
+    <p class="lead">Business collab එකක්ද, sponsorship එකක්ද, නැත්නම් private ම කියන්න ඕන දෙයක්ද — මෙතනින් කෙලින්ම මගේ email එකට එනවා.</p>
+  </div>
+</section>
+
+<main>
+  <div class="contact-grid">
+
+    <div class="info-col">
+      <div class="info-block">
+        <h3>What happens next</h3>
+        <div class="step-list">
+          <div class="step">
+            <span class="step-num">1</span>
+            <p>Form එක fill කරලා <strong>Send Message</strong> click කරන්න.</p>
+          </div>
+          <div class="step">
+            <span class="step-num">2</span>
+            <p>Message එක කෙලින්ම <strong>MatheeX ගේ email එකට</strong> යනවා — website එකේ public ම පේන්නේ නෑ.</p>
+          </div>
+          <div class="step">
+            <span class="step-num">3</span>
+            <p>ඔයාගේ email එකට <strong>කෙලින්ම reply</strong> එකක් එනවා, ඉක්මනින්ම.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-block">
+        <h3>Best for</h3>
+        <p class="lead" style="margin:0;">Sponsored reviews, unboxing features, brand mentions, collab ideas, හෝ public ම කියන්න බැරි ඕන දෙයක්.</p>
+      </div>
+    </div>
+
+    <div class="form-col">
+    <form class="contact-form" id="contact-form">
+      <input type="hidden" name="access_key" value="95bc71f5-e3d0-4164-a093-319343f7eaa2">
+      <input type="hidden" name="subject" value="New inquiry from MatheeX website">
+      <input type="checkbox" name="botcheck" class="hp-field" tabindex="-1" autocomplete="off">
+
+      <p class="form-title">Send a message</p>
+
+      <div class="field">
+        <div class="reason-grid" id="reason-grid">
+          <label class="reason-option active" data-value="Sponsorship">
+            <input type="radio" name="reason" value="Sponsorship" checked> Sponsorship
+          </label>
+          <label class="reason-option" data-value="Business Collab">
+            <input type="radio" name="reason" value="Business Collab"> Business
+          </label>
+          <label class="reason-option" data-value="Private Matter">
+            <input type="radio" name="reason" value="Private Matter"> Private
+          </label>
+        </div>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="name">නම</label>
+          <input type="text" id="name" name="name" required maxlength="80">
+        </div>
+        <div class="field">
+          <label for="email">ඔයාගේ Email</label>
+          <input type="email" id="email" name="email" required maxlength="120">
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="message">Message</label>
+        <textarea id="message" name="message" required maxlength="2000" placeholder="විස්තර මෙතන type කරන්න…"></textarea>
+      </div>
+
+      <button type="submit" class="btn-primary" id="submit-btn">Send Message</button>
+      <div class="form-status" id="form-status"></div>
+    </form>
+
+    <div class="success-panel" id="success-panel">
+      <div class="check">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+      </div>
+      <h2>Sent! ✅</h2>
+      <p>ස්තූතියි — message එක ලැබුනා. ඉක්මනින්ම reply කරන්නම්.</p>
+    </div>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <p>Mathee<span style="color:var(--red);">X</span> · <a href="index.html">Back to home</a></p>
+</footer>
+
+<script>
+  const reasonGrid = document.getElementById('reason-grid');
+  reasonGrid.querySelectorAll('.reason-option').forEach(opt => {
+    opt.addEventListener('click', () => {
+      reasonGrid.querySelectorAll('.reason-option').forEach(o => o.classList.remove('active'));
+      opt.classList.add('active');
+      opt.querySelector('input').checked = true;
+    });
+  });
+
+  const form = document.getElementById('contact-form');
+  const submitBtn = document.getElementById('submit-btn');
+  const statusEl = document.getElementById('form-status');
+  const successPanel = document.getElementById('success-panel');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending…';
+    statusEl.className = 'form-status';
+
+    const formData = new FormData(form);
+    const payload = Object.fromEntries(formData);
+
+    if (payload.botcheck) { submitBtn.disabled = false; submitBtn.textContent = 'Send Message'; return; }
+
+    try{
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      const data = await res.json();
+      if(data.success){
+        form.style.display = 'none';
+        successPanel.classList.add('show');
+      }else{
+        throw new Error(data.message || 'Unknown error');
+      }
+    }catch(err){
+      statusEl.textContent = 'Send වුනේ නෑ, ටිකකින් try කරන්න.';
+      statusEl.className = 'form-status show err';
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Send Message';
+    }
+  });
+</script>
+
+</body>
+</html>
