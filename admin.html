@@ -3,8 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Comments — MatheeX</title>
-<meta name="description" content="MatheeX ට comment එකක් දාන්න — ඔයාගේ අදහස, phone request එකක් share කරන්න.">
+<title>Admin — MatheeX</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="MatheeX admin panel — private.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Noto+Sans+Sinhala:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -410,6 +411,97 @@
     .video-grid{ grid-template-columns: 1fr; }
     header{ padding:16px 5vw; }
   }
+
+  /* ---------- Phones catalog ---------- */
+  .phones-grid{
+    display:grid; grid-template-columns: repeat(4, 1fr); gap:1.6rem;
+  }
+  .phone-card{
+    background:var(--bg-card); border:1px solid var(--line); border-radius:6px; overflow:hidden;
+    transition: transform 0.25s, border-color 0.25s; display:flex; flex-direction:column;
+  }
+  .phone-card:hover{ transform: translateY(-4px); border-color: rgba(255,30,45,0.5); }
+  .phone-img-wrap{ aspect-ratio:1/1; background:#000; overflow:hidden; }
+  .phone-img-wrap img{ width:100%; height:100%; object-fit:cover; }
+  .phone-body{ padding:1.1rem 1.2rem 1.3rem; display:flex; flex-direction:column; flex:1; }
+  .phone-name{ font-family:var(--font-display); font-weight:700; font-size:1.15rem; color:var(--white); margin:0 0 0.3rem; }
+  .phone-price{ font-family:var(--font-display); font-weight:700; font-size:1.3rem; color:var(--red); margin:0 0 0.8rem; }
+  .phone-specs{ list-style:none; padding:0; margin:0 0 auto; font-family:var(--font-si); font-size:0.88rem; color:#c9c8c4; display:flex; flex-direction:column; gap:0.35rem; }
+  .phone-specs li{ display:flex; align-items:flex-start; gap:0.5rem; }
+  .phone-specs li::before{ content:''; width:6px; height:6px; background:var(--red); transform:rotate(45deg); margin-top:0.4rem; flex-shrink:0; }
+  .phone-empty, .phone-loading{ font-family:var(--font-si); color:var(--muted); font-size:0.95rem; grid-column:1/-1; text-align:center; padding:3rem 0; }
+  .skeleton-card{ background:var(--bg-card); border:1px solid var(--line); border-radius:6px; overflow:hidden; }
+  .skeleton-block{
+    background: linear-gradient(90deg, var(--line) 25%, rgba(244,243,240,0.16) 37%, var(--line) 63%);
+    background-size:400% 100%; animation:shimmer 1.4s infinite;
+  }
+  .skeleton-card .phone-img-wrap{ }
+  @media (max-width: 980px){ .phones-grid{ grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px){ .phones-grid{ grid-template-columns: 1fr; } }
+
+  /* ---------- Admin ---------- */
+  .admin-gate{
+    max-width:420px; margin:0 auto; background:var(--bg-card); border:1px solid var(--line);
+    border-radius:8px; padding:2rem;
+  }
+  .admin-gate .field{ margin-bottom:1.1rem; }
+  .admin-gate label{
+    display:block; font-family:var(--font-display); font-weight:600; font-size:0.83rem;
+    text-transform:uppercase; letter-spacing:0.04em; color:var(--muted); margin-bottom:0.5rem;
+  }
+  .admin-gate input{
+    width:100%; background:var(--bg); border:1px solid var(--line); color:var(--white);
+    padding:12px 14px; border-radius:2px; font-family:var(--font-body); font-size:0.95rem;
+  }
+  .admin-gate input:focus{ outline:none; border-color:var(--red); }
+
+  .admin-content{ display:none; }
+  .admin-content.show{ display:block; }
+  .admin-topbar{ display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem; margin-bottom:2.4rem; }
+  .admin-topbar span{ font-family:var(--font-si); color:#c9c8c4; font-size:0.92rem; }
+
+  .upload-form{
+    background:var(--bg-card); border:1px solid var(--line); border-radius:8px; padding:2rem; max-width:640px; margin-bottom:3rem;
+  }
+  .upload-form .field{ margin-bottom:1.3rem; }
+  .upload-form label{
+    display:block; font-family:var(--font-display); font-weight:600; font-size:0.83rem;
+    text-transform:uppercase; letter-spacing:0.04em; color:var(--muted); margin-bottom:0.5rem;
+  }
+  .upload-form input[type="text"], .upload-form input[type="number"], .upload-form textarea{
+    width:100%; background:var(--bg); border:1px solid var(--line); color:var(--white);
+    padding:12px 14px; border-radius:2px; font-family:var(--font-si); font-size:0.95rem;
+  }
+  .upload-form textarea{ min-height:110px; resize:vertical; }
+  .upload-form input:focus, .upload-form textarea:focus{ outline:none; border-color:var(--red); }
+  .file-drop{
+    border:1.5px dashed rgba(244,243,240,0.25); border-radius:4px; padding:1.4rem; text-align:center;
+    cursor:pointer; transition:border-color 0.2s;
+  }
+  .file-drop:hover{ border-color:var(--red); }
+  .file-drop input[type="file"]{ display:none; }
+  .file-drop p{ font-family:var(--font-si); color:var(--muted); font-size:0.9rem; margin:0; }
+  .file-preview{ margin-top:0.9rem; max-width:160px; border-radius:4px; overflow:hidden; display:none; }
+  .file-preview.show{ display:block; }
+  .file-preview img{ width:100%; display:block; }
+  .upload-status{ margin-top:1rem; font-family:var(--font-si); font-size:0.9rem; min-height:1.2em; }
+  .upload-status.ok{ color:#4ade80; }
+  .upload-status.err{ color:var(--red); }
+  .upload-progress{
+    width:100%; height:6px; background:var(--bg); border-radius:3px; overflow:hidden; margin-top:0.8rem; display:none;
+  }
+  .upload-progress.show{ display:block; }
+  .upload-progress .bar{ height:100%; width:0%; background:var(--red); transition:width 0.2s; }
+
+  .admin-phone-list{ display:flex; flex-direction:column; gap:0.9rem; max-width:760px; }
+  .admin-phone-row{
+    display:flex; align-items:center; gap:1rem; background:var(--bg-card); border:1px solid var(--line);
+    border-radius:4px; padding:0.8rem 1rem;
+  }
+  .admin-phone-row img{ width:56px; height:56px; object-fit:cover; border-radius:3px; flex-shrink:0; background:#000; }
+  .admin-phone-row .info{ flex:1; min-width:0; }
+  .admin-phone-row .info strong{ font-family:var(--font-display); color:var(--white); display:block; font-size:0.98rem; }
+  .admin-phone-row .info span{ font-family:var(--font-si); color:var(--red); font-size:0.85rem; }
 </style>
 </head>
 <body>
@@ -419,62 +511,87 @@
   <a href="index.html" class="wordmark">Mathee<span>X</span></a>
   <nav class="site-nav" aria-label="ප්‍රධාන navigation">
     <a href="index.html">Home</a>
-    <a href="videos.html">Videos</a>
     <a href="phones.html">Phones</a>
     <a href="comments.html">Comments</a>
-    <a href="contact.html">Business</a>
   </nav>
-  <a class="nav-cta" href="https://youtube.com/@matheex?si=MYj39L32cIrYaUPr" target="_blank" rel="noopener">Subscribe</a>
 </header>
 
 <main id="main">
   <section class="hero" style="min-height:auto; padding:150px 6vw 60px;">
-    <div class="bolt" style="width:100px; height:190px; top:10%; right:3%; opacity:0.25; transform:rotate(10deg);" aria-hidden="true"></div>
     <div class="hero-grid" style="grid-template-columns:1fr; text-align:left;">
       <div class="hero-copy">
-        <p class="eyebrow">Talk to us</p>
-        <h1 class="hero-title" style="font-size:clamp(2.4rem, 5vw, 4rem);">Comments <span class="x">💬</span></h1>
-        <p class="hero-sub">ඔයාගේ අදහස, phone request, ඕන දෙයක් මෙතන දාන්න.</p>
+        <p class="eyebrow">Private</p>
+        <h1 class="hero-title" style="font-size:clamp(2rem, 4vw, 3.2rem);">Admin <span class="x">Panel.</span></h1>
+        <p class="hero-sub">Phone catalog එක manage කරන්න — add / delete.</p>
       </div>
     </div>
   </section>
 
-  <section class="comments" id="comments">
+  <section>
     <div class="section-inner">
-      <form class="comment-form" id="comment-form">
-        <div class="row">
-          <input type="text" id="c-name" placeholder="ඔයාගේ නම (optional)" maxlength="50">
-        </div>
-        <textarea id="c-message" placeholder="ඔයාගේ comment එක මෙතන type කරන්න…" maxlength="500" required></textarea>
-        <input type="text" name="website" class="hp-field" id="c-hp" tabindex="-1" autocomplete="off">
-        <div class="form-foot">
-          <span class="comment-status" id="c-status"></span>
-          <button type="submit" class="btn-send" id="c-submit">Post Comment</button>
-        </div>
-      </form>
 
-      <div class="comment-list" id="comment-list">
-        <p class="comment-empty">Comments load වෙමින්…</p>
+      <!-- Login gate -->
+      <div class="admin-gate" id="admin-gate">
+        <p class="form-title" style="font-family:var(--font-display); font-weight:700; font-size:1.15rem; margin:0 0 1.3rem;">Admin Login</p>
+        <div class="field">
+          <label for="a-email">Email</label>
+          <input type="text" id="a-email" autocomplete="username">
+        </div>
+        <div class="field">
+          <label for="a-pass">Password</label>
+          <input type="password" id="a-pass" autocomplete="current-password">
+        </div>
+        <button class="btn-primary" id="a-login-btn" type="button" style="width:100%; justify-content:center;">Login</button>
+        <p class="upload-status" id="a-login-status"></p>
       </div>
 
-      <div class="admin-bar">
-        <button class="admin-toggle" id="admin-toggle" type="button">🔒 Admin</button>
-        <div class="admin-panel" id="admin-panel">
-          <div id="admin-login">
-            <div class="row">
-              <input type="text" id="admin-email" placeholder="Admin email">
-              <input type="password" id="admin-pass" placeholder="Password">
+      <!-- Admin content (shown after login) -->
+      <div class="admin-content" id="admin-content">
+        <div class="admin-topbar">
+          <span id="admin-who"></span>
+          <button class="btn-link" id="a-logout" type="button">Logout</button>
+        </div>
+
+        <form class="upload-form" id="upload-form">
+          <p style="font-family:var(--font-display); font-weight:700; font-size:1.15rem; margin:0 0 1.4rem;">Add a Phone</p>
+
+          <div class="field">
+            <label for="p-name">Phone Name</label>
+            <input type="text" id="p-name" required maxlength="100" placeholder="e.g. Samsung Galaxy S25 Ultra">
+          </div>
+
+          <div class="field">
+            <label for="p-price">Price (LKR)</label>
+            <input type="number" id="p-price" required min="0" step="1" placeholder="e.g. 385000">
+          </div>
+
+          <div class="field">
+            <label for="p-specs">Specs (එකක් per line)</label>
+            <textarea id="p-specs" required placeholder="6.8&quot; Dynamic AMOLED&#10;Snapdragon 8 Elite&#10;12GB RAM / 256GB&#10;200MP Camera"></textarea>
+          </div>
+
+          <div class="field">
+            <label>Phone Image</label>
+            <label class="file-drop" id="file-drop-label">
+              <input type="file" id="p-image" accept="image/*" required>
+              <p id="file-drop-text">Click to choose an image, or drag one here</p>
+            </label>
+            <div class="file-preview" id="file-preview">
+              <img id="file-preview-img" src="" alt="Preview">
             </div>
-            <button class="btn-send" id="admin-login-btn" type="button">Login</button>
-            <p class="admin-status" id="admin-status"></p>
           </div>
-          <div id="admin-loggedin" class="admin-loggedin" style="display:none;">
-            <span id="admin-who"></span>
-            <button class="btn-danger" id="admin-clear-all" type="button">🗑 Delete All Comments</button>
-            <button class="btn-link" id="admin-logout" type="button">Logout</button>
-          </div>
+
+          <button type="submit" class="btn-primary" id="upload-btn" style="width:100%; justify-content:center;">Upload Phone</button>
+          <div class="upload-progress" id="upload-progress"><div class="bar" id="upload-progress-bar"></div></div>
+          <p class="upload-status" id="upload-status"></p>
+        </form>
+
+        <p style="font-family:var(--font-display); font-weight:700; font-size:1.1rem; margin:0 0 1.2rem;">Existing Phones</p>
+        <div class="admin-phone-list" id="admin-phone-list">
+          <p class="comment-empty">Loading…</p>
         </div>
       </div>
+
     </div>
   </section>
 </main>
@@ -484,23 +601,20 @@
     <a href="index.html" class="wordmark">Mathee<span>X</span></a>
     <p>Unboxing · Software Updates · Phone Reviews</p>
   </div>
-  <div class="footer-links">
-    <a href="https://youtube.com/@matheex?si=MYj39L32cIrYaUPr" target="_blank" rel="noopener">YouTube</a>
-    <a href="videos.html">Videos</a>
-    <a href="phones.html">Phones</a>
-    <a href="contact.html">Business</a>
-  </div>
 </footer>
 
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-app.js";
   import {
     getFirestore, collection, addDoc, deleteDoc, doc,
-    query, orderBy, onSnapshot, serverTimestamp, getDocs
+    query, orderBy, onSnapshot, serverTimestamp
   } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-firestore.js";
   import {
     getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged
   } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-auth.js";
+  import {
+    getStorage, ref, uploadBytesResumable, getDownloadURL
+  } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-storage.js";
 
   const firebaseConfig = {
     apiKey: "AIzaSyBCkEvN1kvD4LfbQLs8TQgjuMlmTYDPQZ8",
@@ -515,156 +629,161 @@
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
   const auth = getAuth(app);
+  const storage = getStorage(app);
 
-  const commentsCol = collection(db, "comments");
-  const listEl = document.getElementById("comment-list");
-  const form = document.getElementById("comment-form");
-  const nameInput = document.getElementById("c-name");
-  const msgInput = document.getElementById("c-message");
-  const hpInput = document.getElementById("c-hp");
-  const statusEl = document.getElementById("c-status");
-  const submitBtn = document.getElementById("c-submit");
+  const phonesCol = collection(db, "phones");
 
-  let isAdmin = false;
-  let currentComments = [];
+  // ---------------- Login gate ----------------
+  const gate = document.getElementById("admin-gate");
+  const content = document.getElementById("admin-content");
+  const emailInput = document.getElementById("a-email");
+  const passInput = document.getElementById("a-pass");
+  const loginBtn = document.getElementById("a-login-btn");
+  const loginStatus = document.getElementById("a-login-status");
+  const whoEl = document.getElementById("admin-who");
+  const logoutBtn = document.getElementById("a-logout");
 
-  function timeAgo(ts){
-    if(!ts) return "just now";
-    const d = ts.toDate ? ts.toDate() : new Date(ts);
-    const secs = Math.floor((Date.now() - d.getTime()) / 1000);
-    if(secs < 60) return "just now";
-    if(secs < 3600) return Math.floor(secs/60) + "m ago";
-    if(secs < 86400) return Math.floor(secs/3600) + "h ago";
-    return Math.floor(secs/86400) + "d ago";
-  }
-
-  function escapeHtml(str){
-    const div = document.createElement("div");
-    div.textContent = str;
-    return div.innerHTML;
-  }
-
-  function renderComments(){
-    if(currentComments.length === 0){
-      listEl.innerHTML = '<p class="comment-empty">තවම comments නෑ — පළමු comment එක ඔයාගෙන්ම! 👇</p>';
-      return;
+  loginBtn.addEventListener("click", async () => {
+    loginStatus.textContent = "Logging in…";
+    loginStatus.className = "upload-status";
+    try{
+      await signInWithEmailAndPassword(auth, emailInput.value.trim(), passInput.value);
+      passInput.value = "";
+      loginStatus.textContent = "";
+    }catch(err){
+      loginStatus.textContent = "Login වැරදියි.";
+      loginStatus.className = "upload-status err";
     }
-    listEl.innerHTML = currentComments.map(c => `
-      <div class="comment-card" data-id="${c.id}">
-        <div class="c-head">
-          <span class="c-name">${escapeHtml(c.name || "Guest")}</span>
-          <span class="c-time">${timeAgo(c.timestamp)}</span>
-        </div>
-        <p class="c-msg">${escapeHtml(c.message)}</p>
-        ${isAdmin ? `<button class="c-delete" data-del="${c.id}" type="button">🗑 Delete</button>` : ""}
-      </div>
-    `).join("");
+  });
 
-    if(isAdmin){
+  logoutBtn.addEventListener("click", () => signOut(auth));
+
+  onAuthStateChanged(auth, (user) => {
+    if (user){
+      gate.style.display = "none";
+      content.classList.add("show");
+      whoEl.textContent = "Logged in: " + user.email;
+      listenPhoneList();
+    } else {
+      gate.style.display = "block";
+      content.classList.remove("show");
+    }
+  });
+
+  // ---------------- Image preview ----------------
+  const fileInput = document.getElementById("p-image");
+  const filePreview = document.getElementById("file-preview");
+  const filePreviewImg = document.getElementById("file-preview-img");
+  const fileDropText = document.getElementById("file-drop-text");
+
+  fileInput.addEventListener("change", () => {
+    const file = fileInput.files[0];
+    if (!file) return;
+    fileDropText.textContent = file.name;
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      filePreviewImg.src = e.target.result;
+      filePreview.classList.add("show");
+    };
+    reader.readAsDataURL(file);
+  });
+
+  // ---------------- Upload form ----------------
+  const form = document.getElementById("upload-form");
+  const uploadBtn = document.getElementById("upload-btn");
+  const uploadStatus = document.getElementById("upload-status");
+  const progressWrap = document.getElementById("upload-progress");
+  const progressBar = document.getElementById("upload-progress-bar");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const name = document.getElementById("p-name").value.trim();
+    const price = document.getElementById("p-price").value;
+    const specsRaw = document.getElementById("p-specs").value;
+    const file = fileInput.files[0];
+
+    if (!name || !price || !file) return;
+
+    const specs = specsRaw.split("\n").map(s => s.trim()).filter(Boolean);
+
+    uploadBtn.disabled = true;
+    uploadStatus.textContent = "";
+    uploadStatus.className = "upload-status";
+    progressWrap.classList.add("show");
+    progressBar.style.width = "0%";
+
+    try{
+      const path = `phones/${Date.now()}_${file.name}`;
+      const storageRef = ref(storage, path);
+      const task = uploadBytesResumable(storageRef, file);
+
+      task.on("state_changed", (snap) => {
+        const pct = (snap.bytesTransferred / snap.totalBytes) * 100;
+        progressBar.style.width = pct + "%";
+      });
+
+      await task;
+      const imageUrl = await getDownloadURL(storageRef);
+
+      await addDoc(phonesCol, {
+        name,
+        price: Number(price),
+        specs,
+        imageUrl,
+        imagePath: path,
+        createdAt: serverTimestamp()
+      });
+
+      form.reset();
+      filePreview.classList.remove("show");
+      fileDropText.textContent = "Click to choose an image, or drag one here";
+      uploadStatus.textContent = "Uploaded! 🎉";
+      uploadStatus.className = "upload-status ok";
+    }catch(err){
+      uploadStatus.textContent = "Upload වුනේ නෑ: " + err.message;
+      uploadStatus.className = "upload-status err";
+    }finally{
+      uploadBtn.disabled = false;
+      progressWrap.classList.remove("show");
+    }
+  });
+
+  // ---------------- Existing phones list (with delete) ----------------
+  const listEl = document.getElementById("admin-phone-list");
+  let unsubList = null;
+
+  function listenPhoneList(){
+    if (unsubList) return;
+    const q = query(phonesCol, orderBy("createdAt", "desc"));
+    unsubList = onSnapshot(q, (snapshot) => {
+      const phones = snapshot.docs.map(d => ({ id: d.id, ...d.data() }));
+      if (phones.length === 0){
+        listEl.innerHTML = '<p class="comment-empty">තවම phones නෑ.</p>';
+        return;
+      }
+      listEl.innerHTML = phones.map(p => `
+        <div class="admin-phone-row" data-id="${p.id}">
+          <img src="${p.imageUrl || ""}" alt="">
+          <div class="info">
+            <strong>${(p.name || "Untitled").replace(/</g,"&lt;")}</strong>
+            <span>Rs. ${Number(p.price).toLocaleString("en-LK")}</span>
+          </div>
+          <button class="c-delete" data-del="${p.id}" type="button">🗑 Delete</button>
+        </div>
+      `).join("");
+
       listEl.querySelectorAll("[data-del]").forEach(btn => {
         btn.addEventListener("click", async () => {
-          if(!confirm("මේ comment එක delete කරන්නද?")) return;
+          if (!confirm("මේ phone එක delete කරන්නද?")) return;
           try{
-            await deleteDoc(doc(db, "comments", btn.dataset.del));
+            await deleteDoc(doc(db, "phones", btn.dataset.del));
           }catch(err){
             alert("Delete වුනේ නෑ: " + err.message);
           }
         });
       });
-    }
+    });
   }
-
-  const q = query(commentsCol, orderBy("timestamp", "desc"));
-  onSnapshot(q, (snapshot) => {
-    currentComments = snapshot.docs.map(d => ({ id: d.id, ...d.data() }));
-    renderComments();
-  }, (err) => {
-    listEl.innerHTML = '<p class="comment-empty">Comments load කරගන්න බැරි වුනා. පසුව try කරන්න.</p>';
-    console.error(err);
-  });
-
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const message = msgInput.value.trim();
-    if(!message) return;
-    if(hpInput.value){ return; }
-
-    submitBtn.disabled = true;
-    statusEl.textContent = "Posting…";
-    try{
-      await addDoc(commentsCol, {
-        name: (nameInput.value.trim() || "Guest").slice(0, 50),
-        message: message.slice(0, 500),
-        timestamp: serverTimestamp()
-      });
-      msgInput.value = "";
-      statusEl.textContent = "Posted! 🎉";
-      setTimeout(() => statusEl.textContent = "", 2500);
-    }catch(err){
-      statusEl.textContent = "Post වුනේ නෑ, try again.";
-      console.error(err);
-    }finally{
-      submitBtn.disabled = false;
-    }
-  });
-
-  const adminToggle = document.getElementById("admin-toggle");
-  const adminPanel = document.getElementById("admin-panel");
-  const adminLoginBox = document.getElementById("admin-login");
-  const adminLoggedInBox = document.getElementById("admin-loggedin");
-  const adminEmail = document.getElementById("admin-email");
-  const adminPass = document.getElementById("admin-pass");
-  const adminLoginBtn = document.getElementById("admin-login-btn");
-  const adminStatus = document.getElementById("admin-status");
-  const adminWho = document.getElementById("admin-who");
-  const adminLogout = document.getElementById("admin-logout");
-  const adminClearAll = document.getElementById("admin-clear-all");
-
-  adminToggle.addEventListener("click", () => {
-    adminPanel.classList.toggle("open");
-  });
-
-  adminLoginBtn.addEventListener("click", async () => {
-    adminStatus.textContent = "Logging in…";
-    try{
-      await signInWithEmailAndPassword(auth, adminEmail.value.trim(), adminPass.value);
-      adminStatus.textContent = "";
-      adminPass.value = "";
-    }catch(err){
-      adminStatus.textContent = "Login වැරදියි.";
-    }
-  });
-
-  adminLogout.addEventListener("click", () => signOut(auth));
-
-  adminClearAll.addEventListener("click", async () => {
-    if(!confirm("හැම comment එකම delete කරන්නද? මේක undo කරන්න බෑ.")) return;
-    if(!confirm("Confirm — ඇත්තටම ALL comments delete කරන්නද?")) return;
-    adminClearAll.disabled = true;
-    adminClearAll.textContent = "Deleting…";
-    try{
-      const snap = await getDocs(commentsCol);
-      await Promise.all(snap.docs.map(d => deleteDoc(doc(db, "comments", d.id))));
-    }catch(err){
-      alert("කිසිම comment එකක් delete වුනේ නෑ: " + err.message);
-    }finally{
-      adminClearAll.disabled = false;
-      adminClearAll.textContent = "🗑 Delete All Comments";
-    }
-  });
-
-  onAuthStateChanged(auth, (user) => {
-    isAdmin = !!user;
-    if(user){
-      adminLoginBox.style.display = "none";
-      adminLoggedInBox.style.display = "flex";
-      adminWho.textContent = "Logged in: " + user.email;
-    }else{
-      adminLoginBox.style.display = "block";
-      adminLoggedInBox.style.display = "none";
-    }
-    renderComments();
-  });
 </script>
 
 </body>
