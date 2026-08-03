@@ -419,10 +419,9 @@
   <a href="#top" class="wordmark">Mathee<span>X</span></a>
   <nav class="site-nav" aria-label="ප්‍රධාන navigation">
     <a href="#about">About</a>
-    <a href="#videos">Videos</a>
-    <a href="#comments">Comments</a>
-    <a href="contact.html">Sponsorship</a>
-    <a href="#subscribe">Subscribe</a>
+    <a href="videos.html">Videos</a>
+    <a href="comments.html">Comments</a>
+    <a href="contact.html">Business</a>
   </nav>
   <a class="nav-cta" href="https://youtube.com/@matheex?si=MYj39L32cIrYaUPr" target="_blank" rel="noopener">Subscribe</a>
 </header>
@@ -484,10 +483,12 @@ Technology ගැන කැමතිනම්, SUBSCRIBE කරලා අලු�
 
   <section id="videos">
     <div class="section-inner">
-      <div class="section-head">
-        <p class="eyebrow">Watch</p>
-        <h2 class="section-title">Latest on the <span class="x">X</span></h2>
-        <p class="section-desc">නවතම videos — thumbnail එක click කරලා මෙතනින්ම play කරන්න.</p>
+      <div class="section-head" style="display:flex; align-items:flex-end; justify-content:space-between; flex-wrap:wrap; gap:1rem;">
+        <div>
+          <p class="eyebrow">Watch</p>
+          <h2 class="section-title">Latest on the <span class="x">X</span></h2>
+        </div>
+        <a class="btn-ghost" href="videos.html">See All Videos</a>
       </div>
       <div class="video-grid" id="video-grid">
         <!-- video cards injected by JS -->
@@ -495,49 +496,12 @@ Technology ගැන කැමතිනම්, SUBSCRIBE කරලා අලු�
     </div>
   </section>
 
-  <section class="comments" id="comments">
-    <div class="section-inner">
-      <div class="section-head">
-        <p class="eyebrow">Talk to us</p>
-        <h2 class="section-title">Comments <span class="x">💬</span></h2>
-        <p class="section-desc">ඔයාගේ අදහස, phone request, ඕන දෙයක් මෙතන දාන්න.</p>
-      </div>
-
-      <form class="comment-form" id="comment-form">
-        <div class="row">
-          <input type="text" id="c-name" placeholder="ඔයාගේ නම (optional)" maxlength="50">
-        </div>
-        <textarea id="c-message" placeholder="ඔයාගේ comment එක මෙතන type කරන්න…" maxlength="500" required></textarea>
-        <!-- honeypot field to deter simple bots -->
-        <input type="text" name="website" class="hp-field" id="c-hp" tabindex="-1" autocomplete="off">
-        <div class="form-foot">
-          <span class="comment-status" id="c-status"></span>
-          <button type="submit" class="btn-send" id="c-submit">Post Comment</button>
-        </div>
-      </form>
-
-      <div class="comment-list" id="comment-list">
-        <p class="comment-empty">Comments load වෙමින්…</p>
-      </div>
-
-      <div class="admin-bar">
-        <button class="admin-toggle" id="admin-toggle" type="button">🔒 Admin</button>
-        <div class="admin-panel" id="admin-panel">
-          <div id="admin-login">
-            <div class="row">
-              <input type="text" id="admin-email" placeholder="Admin email">
-              <input type="password" id="admin-pass" placeholder="Password">
-            </div>
-            <button class="btn-send" id="admin-login-btn" type="button">Login</button>
-            <p class="admin-status" id="admin-status"></p>
-          </div>
-          <div id="admin-loggedin" class="admin-loggedin" style="display:none;">
-            <span id="admin-who"></span>
-            <button class="btn-danger" id="admin-clear-all" type="button">🗑 Delete All Comments</button>
-            <button class="btn-link" id="admin-logout" type="button">Logout</button>
-          </div>
-        </div>
-      </div>
+  <section class="comments" id="comments-teaser">
+    <div class="section-inner" style="text-align:center;">
+      <p class="eyebrow" style="justify-content:center;">Talk to us</p>
+      <h2 class="section-title">Join the <span class="x">Comments 💬</span></h2>
+      <p class="section-desc" style="margin:0 auto 1.6rem;">ඔයාගේ අදහස, phone request එකක් share කරන්න.</p>
+      <a class="btn-primary" href="comments.html">Go to Comments</a>
     </div>
   </section>
 
@@ -584,7 +548,8 @@ Technology ගැන කැමතිනම්, SUBSCRIBE කරලා අලු�
   </div>
   <div class="footer-links">
     <a href="https://youtube.com/@matheex?si=MYj39L32cIrYaUPr" target="_blank" rel="noopener">YouTube</a>
-    <a href="#videos">Videos</a>
+    <a href="videos.html">Videos</a>
+    <a href="comments.html">Comments</a>
     <a href="contact.html">Business</a>
   </div>
 </footer>
@@ -594,11 +559,7 @@ Technology ගැන කැමතිනම්, SUBSCRIBE කරලා අලු�
     "aAAEpB7B85U",
     "j0Kvd8WWG6U",
     "O_f7jyrnFlk",
-    "faRdbfZhos4",
-    "T2jrptYQt4M",
-    "IeJD9qFX4KU",
-    "KAqg-t028gI",
-    "jz3rgQUdEJk"
+    "faRdbfZhos4"
   ];
 
   const grid = document.getElementById('video-grid');
@@ -648,184 +609,6 @@ Technology ගැන කැමතිනම්, SUBSCRIBE කරලා අලු�
           titleEl.classList.remove('skeleton');
         }
       });
-  });
-</script>
-
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-app.js";
-  import {
-    getFirestore, collection, addDoc, deleteDoc, doc,
-    query, orderBy, onSnapshot, serverTimestamp, getDocs
-  } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-firestore.js";
-  import {
-    getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged
-  } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-auth.js";
-
-  const firebaseConfig = {
-    apiKey: "AIzaSyBCkEvN1kvD4LfbQLs8TQgjuMlmTYDPQZ8",
-    authDomain: "matheex-comments.firebaseapp.com",
-    projectId: "matheex-comments",
-    storageBucket: "matheex-comments.firebasestorage.app",
-    messagingSenderId: "621126172186",
-    appId: "1:621126172186:web:c86406b2eb15f4bb9fdba3",
-    measurementId: "G-RMV55P3LFK"
-  };
-
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
-  const auth = getAuth(app);
-
-  const commentsCol = collection(db, "comments");
-  const listEl = document.getElementById("comment-list");
-  const form = document.getElementById("comment-form");
-  const nameInput = document.getElementById("c-name");
-  const msgInput = document.getElementById("c-message");
-  const hpInput = document.getElementById("c-hp");
-  const statusEl = document.getElementById("c-status");
-  const submitBtn = document.getElementById("c-submit");
-
-  let isAdmin = false;
-  let currentComments = [];
-
-  function timeAgo(ts){
-    if(!ts) return "just now";
-    const d = ts.toDate ? ts.toDate() : new Date(ts);
-    const secs = Math.floor((Date.now() - d.getTime()) / 1000);
-    if(secs < 60) return "just now";
-    if(secs < 3600) return Math.floor(secs/60) + "m ago";
-    if(secs < 86400) return Math.floor(secs/3600) + "h ago";
-    return Math.floor(secs/86400) + "d ago";
-  }
-
-  function escapeHtml(str){
-    const div = document.createElement("div");
-    div.textContent = str;
-    return div.innerHTML;
-  }
-
-  function renderComments(){
-    if(currentComments.length === 0){
-      listEl.innerHTML = '<p class="comment-empty">තවම comments නෑ — පළමු comment එක ඔයාගෙන්ම! 👇</p>';
-      return;
-    }
-    listEl.innerHTML = currentComments.map(c => `
-      <div class="comment-card" data-id="${c.id}">
-        <div class="c-head">
-          <span class="c-name">${escapeHtml(c.name || "Guest")}</span>
-          <span class="c-time">${timeAgo(c.timestamp)}</span>
-        </div>
-        <p class="c-msg">${escapeHtml(c.message)}</p>
-        ${isAdmin ? `<button class="c-delete" data-del="${c.id}" type="button">🗑 Delete</button>` : ""}
-      </div>
-    `).join("");
-
-    if(isAdmin){
-      listEl.querySelectorAll("[data-del]").forEach(btn => {
-        btn.addEventListener("click", async () => {
-          if(!confirm("මේ comment එක delete කරන්නද?")) return;
-          try{
-            await deleteDoc(doc(db, "comments", btn.dataset.del));
-          }catch(err){
-            alert("Delete වුනේ නෑ: " + err.message);
-          }
-        });
-      });
-    }
-  }
-
-  // Realtime listener
-  const q = query(commentsCol, orderBy("timestamp", "desc"));
-  onSnapshot(q, (snapshot) => {
-    currentComments = snapshot.docs.map(d => ({ id: d.id, ...d.data() }));
-    renderComments();
-  }, (err) => {
-    listEl.innerHTML = '<p class="comment-empty">Comments load කරගන්න බැරි වුනා. පසුව try කරන්න.</p>';
-    console.error(err);
-  });
-
-  // Submit a new comment
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const message = msgInput.value.trim();
-    if(!message) return;
-    if(hpInput.value){ return; } // honeypot triggered — silently ignore
-
-    submitBtn.disabled = true;
-    statusEl.textContent = "Posting…";
-    try{
-      await addDoc(commentsCol, {
-        name: (nameInput.value.trim() || "Guest").slice(0, 50),
-        message: message.slice(0, 500),
-        timestamp: serverTimestamp()
-      });
-      msgInput.value = "";
-      statusEl.textContent = "Posted! 🎉";
-      setTimeout(() => statusEl.textContent = "", 2500);
-    }catch(err){
-      statusEl.textContent = "Post වුනේ නෑ, try again.";
-      console.error(err);
-    }finally{
-      submitBtn.disabled = false;
-    }
-  });
-
-  // ---------------- Admin panel ----------------
-  const adminToggle = document.getElementById("admin-toggle");
-  const adminPanel = document.getElementById("admin-panel");
-  const adminLoginBox = document.getElementById("admin-login");
-  const adminLoggedInBox = document.getElementById("admin-loggedin");
-  const adminEmail = document.getElementById("admin-email");
-  const adminPass = document.getElementById("admin-pass");
-  const adminLoginBtn = document.getElementById("admin-login-btn");
-  const adminStatus = document.getElementById("admin-status");
-  const adminWho = document.getElementById("admin-who");
-  const adminLogout = document.getElementById("admin-logout");
-  const adminClearAll = document.getElementById("admin-clear-all");
-
-  adminToggle.addEventListener("click", () => {
-    adminPanel.classList.toggle("open");
-  });
-
-  adminLoginBtn.addEventListener("click", async () => {
-    adminStatus.textContent = "Logging in…";
-    try{
-      await signInWithEmailAndPassword(auth, adminEmail.value.trim(), adminPass.value);
-      adminStatus.textContent = "";
-      adminPass.value = "";
-    }catch(err){
-      adminStatus.textContent = "Login වැරදියි.";
-    }
-  });
-
-  adminLogout.addEventListener("click", () => signOut(auth));
-
-  adminClearAll.addEventListener("click", async () => {
-    if(!confirm("හැම comment එකම delete කරන්නද? මේක undo කරන්න බෑ.")) return;
-    if(!confirm("Confirm — ඇත්තටම ALL comments delete කරන්නද?")) return;
-    adminClearAll.disabled = true;
-    adminClearAll.textContent = "Deleting…";
-    try{
-      const snap = await getDocs(commentsCol);
-      await Promise.all(snap.docs.map(d => deleteDoc(doc(db, "comments", d.id))));
-    }catch(err){
-      alert("කිසිම comment එකක් delete වුනේ නෑ: " + err.message);
-    }finally{
-      adminClearAll.disabled = false;
-      adminClearAll.textContent = "🗑 Delete All Comments";
-    }
-  });
-
-  onAuthStateChanged(auth, (user) => {
-    isAdmin = !!user;
-    if(user){
-      adminLoginBox.style.display = "none";
-      adminLoggedInBox.style.display = "flex";
-      adminWho.textContent = "Logged in: " + user.email;
-    }else{
-      adminLoginBox.style.display = "block";
-      adminLoggedInBox.style.display = "none";
-    }
-    renderComments();
   });
 </script>
 
