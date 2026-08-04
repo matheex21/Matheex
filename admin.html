@@ -758,6 +758,12 @@
   const listEl = document.getElementById("admin-phone-list");
   let unsubList = null;
 
+  function escapeHtml(str){
+    const div = document.createElement("div");
+    div.textContent = str;
+    return div.innerHTML;
+  }
+
   function listenPhoneList(){
     if (unsubList) return;
     const q = query(phonesCol, orderBy("createdAt", "desc"));
@@ -771,7 +777,7 @@
         <div class="admin-phone-row" data-id="${p.id}">
           <img src="${p.imageUrl || ""}" alt="">
           <div class="info">
-            <strong>${(p.name || "Untitled").replace(/</g,"&lt;")}</strong>
+            <strong>${escapeHtml(p.name || "Untitled")}</strong>
             <span>Rs. ${Number(p.price).toLocaleString("en-LK")}</span>
           </div>
           <button class="c-delete" data-del="${p.id}" type="button">🗑 Delete</button>
