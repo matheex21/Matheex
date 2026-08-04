@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Business Inquiries — MatheeX</title>
-<meta name="description" content="MatheeX සමග Sponsorship, business collabs, හෝ private matters සම්බන්ධ වෙන්න.">
+<title>Private Message — MatheeX</title>
+<meta name="description" content="MatheeX ට private message එකක් යවන්න.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Noto+Sans+Sinhala:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -142,6 +142,43 @@
   .field input:focus, .field textarea:focus{ outline:none; border-color:var(--red); }
   .hp-field{ position:absolute; left:-9999px; width:1px; height:1px; opacity:0; }
 
+  /* ---- Google sign-in gate ---- */
+  .auth-gate{
+    background:var(--bg-card); border:1px solid var(--line); border-radius:8px;
+    padding:2.6rem 2.2rem; text-align:center; box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+  }
+  .auth-gate .lock-icon{
+    width:52px; height:52px; border-radius:50%; background:rgba(255,30,45,0.1);
+    display:flex; align-items:center; justify-content:center; margin:0 auto 1.1rem; font-size:1.4rem;
+  }
+  .auth-gate h3{ font-family:var(--font-display); font-weight:700; font-size:1.2rem; margin:0 0 0.6rem; }
+  .auth-gate p{ font-family:var(--font-si); color:#c9c8c4; font-size:0.95rem; margin:0 0 1.6rem; }
+  .google-btn{
+    display:inline-flex; align-items:center; gap:0.7rem; background:#fff; color:#1f1f1f;
+    font-family:var(--font-body); font-weight:600; font-size:0.95rem; border:0; border-radius:4px;
+    padding:12px 24px; cursor:pointer; transition:all 0.2s; box-shadow:0 4px 14px rgba(0,0,0,0.25);
+  }
+  .google-btn:hover{ transform:translateY(-2px); box-shadow:0 8px 20px rgba(0,0,0,0.35); }
+  .auth-error{ margin-top:1rem; font-family:var(--font-si); color:var(--red); font-size:0.88rem; min-height:1.2em; }
+
+  .signed-in-bar{
+    display:flex; align-items:center; gap:0.8rem; margin-bottom:1.6rem;
+    background:var(--bg); border:1px solid var(--line); border-radius:6px; padding:0.7rem 1rem;
+  }
+  .signed-in-bar img{ width:34px; height:34px; border-radius:50%; flex-shrink:0; }
+  .signed-in-bar .who{ flex:1; min-width:0; }
+  .signed-in-bar .who strong{ display:block; font-family:var(--font-display); font-size:0.92rem; color:var(--white); }
+  .signed-in-bar .who span{ display:block; font-family:var(--font-si); font-size:0.8rem; color:var(--muted); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .signed-in-bar button{
+    background:none; border:1px solid var(--line); color:var(--muted); border-radius:3px;
+    font-family:var(--font-display); text-transform:uppercase; font-size:0.75rem; letter-spacing:0.03em;
+    padding:6px 12px; cursor:pointer; flex-shrink:0; transition:all 0.2s;
+  }
+  .signed-in-bar button:hover{ color:var(--red); border-color:var(--red); }
+
+  form.contact-form{ display:none; }
+  form.contact-form.show{ display:block; }
+
   .btn-primary{
     font-family: var(--font-display); font-weight:700; text-transform:uppercase; font-size:0.92rem;
     letter-spacing:0.04em; padding:15px 34px; border:0; border-radius:2px; cursor:pointer;
@@ -196,8 +233,8 @@
 <section class="page-hero">
   <div class="page-hero-inner">
     <p class="eyebrow">Get in touch</p>
-    <h1>Sponsorship &amp; <span class="x">Private</span> Inquiries</h1>
-    <p class="lead">Business collab එකක්ද, sponsorship එකක්ද, නැත්නම් private ම කියන්න ඕන දෙයක්ද — මෙතනින් කෙලින්ම මගේ email එකට එනවා.</p>
+    <h1><span class="x">Private</span> Message</h1>
+    <p class="lead">Public ම කියන්න බැරි ඕන දෙයක්ද තියෙනවනම් — මෙතනින් කෙලින්ම මගේ email එකට එනවා.</p>
   </div>
 </section>
 
@@ -210,46 +247,55 @@
         <div class="step-list">
           <div class="step">
             <span class="step-num">1</span>
-            <p>Form එක fill කරලා <strong>Send Message</strong> click කරන්න.</p>
+            <p><strong>Google account</strong> එකෙන් sign in වෙන්න — fake messages නවත්තන්න.</p>
           </div>
           <div class="step">
             <span class="step-num">2</span>
-            <p>Message එක කෙලින්ම <strong>MatheeX ගේ email එකට</strong> යනවා — website එකේ public ම පේන්නේ නෑ.</p>
+            <p>Message එක type කරලා <strong>Send Message</strong> click කරන්න.</p>
           </div>
           <div class="step">
             <span class="step-num">3</span>
-            <p>ඔයාගේ email එකට <strong>කෙලින්ම reply</strong> එකක් එනවා, ඉක්මනින්ම.</p>
+            <p>Message එක කෙලින්ම <strong>MatheeX ගේ email එකට</strong> යනවා — ඔයාගේ email එකට <strong>කෙලින්ම reply</strong> එකක් එනවා.</p>
           </div>
         </div>
       </div>
 
       <div class="info-block">
         <h3>Best for</h3>
-        <p class="lead" style="margin:0;">Sponsored reviews, unboxing features, brand mentions, collab ideas, හෝ public ම කියන්න බැරි ඕන දෙයක්.</p>
+        <p class="lead" style="margin:0;">Public ම කියන්න බැරි ඕන දෙයක් — private ම matter එකක්, personal request එකක්, ඕන දෙයක්.</p>
       </div>
     </div>
 
     <div class="form-col">
+
+    <div class="auth-gate" id="auth-gate">
+      <div class="lock-icon">🔒</div>
+      <h3>Sign in to send a message</h3>
+      <p>Fake messages නවත්තන්න, message යවන්න කලින් Google account එකෙන් sign in වෙන්න ඕන.</p>
+      <button class="google-btn" id="google-signin-btn" type="button">
+        <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3c-1.6 4.7-6.1 8-11.3 8-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.1 8 3l6-6C34.6 5.1 29.6 3 24 3 12.4 3 3 12.4 3 24s9.4 21 21 21 21-9.4 21-21c0-1.2-.1-2.3-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.6 15.9 18.9 13 24 13c3.1 0 5.8 1.1 8 3l6-6C34.6 5.1 29.6 3 24 3 16.3 3 9.7 7.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 45c5.5 0 10.4-1.9 14.2-5.1l-6.6-5.4C29.6 36.3 27 37 24 37c-5.2 0-9.6-3.3-11.2-8l-6.6 5.1C9.6 40.6 16.3 45 24 45z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.3-2.2 4.2-4.1 5.6l6.6 5.4C41.6 35.8 45 30.4 45 24c0-1.2-.1-2.3-.4-3.5z"/></svg>
+        Sign in with Google
+      </button>
+      <p class="auth-error" id="auth-error"></p>
+    </div>
+
     <form class="contact-form" id="contact-form">
       <input type="hidden" name="access_key" value="95bc71f5-e3d0-4164-a093-319343f7eaa2">
       <input type="hidden" name="subject" value="New inquiry from MatheeX website">
       <input type="checkbox" name="botcheck" class="hp-field" tabindex="-1" autocomplete="off">
 
+      <div class="signed-in-bar">
+        <img id="user-photo" src="" alt="">
+        <div class="who">
+          <strong id="user-name-display"></strong>
+          <span id="user-email-display"></span>
+        </div>
+        <button type="button" id="sign-out-btn">Sign out</button>
+      </div>
+
       <p class="form-title">Send a message</p>
 
-      <div class="field">
-        <div class="reason-grid" id="reason-grid">
-          <label class="reason-option active" data-value="Sponsorship">
-            <input type="radio" name="reason" value="Sponsorship" checked> Sponsorship
-          </label>
-          <label class="reason-option" data-value="Business Collab">
-            <input type="radio" name="reason" value="Business Collab"> Business
-          </label>
-          <label class="reason-option" data-value="Private Matter">
-            <input type="radio" name="reason" value="Private Matter"> Private
-          </label>
-        </div>
-      </div>
+      <input type="hidden" name="reason" value="Private Matter">
 
       <div class="field-row">
         <div class="field">
@@ -257,8 +303,8 @@
           <input type="text" id="name" name="name" required maxlength="80">
         </div>
         <div class="field">
-          <label for="email">ඔයාගේ Email</label>
-          <input type="email" id="email" name="email" required maxlength="120">
+          <label for="email">ඔයාගේ Email (verified)</label>
+          <input type="email" id="email" name="email" required maxlength="120" readonly style="opacity:0.7; cursor:not-allowed;">
         </div>
       </div>
 
@@ -287,23 +333,74 @@
   <p>Mathee<span style="color:var(--red);">X</span> · <a href="index.html">Back to home</a></p>
 </footer>
 
-<script>
-  const reasonGrid = document.getElementById('reason-grid');
-  reasonGrid.querySelectorAll('.reason-option').forEach(opt => {
-    opt.addEventListener('click', () => {
-      reasonGrid.querySelectorAll('.reason-option').forEach(o => o.classList.remove('active'));
-      opt.classList.add('active');
-      opt.querySelector('input').checked = true;
-    });
-  });
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-app.js";
+  import {
+    getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged
+  } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-auth.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyBCkEvN1kvD4LfbQLs8TQgjuMlmTYDPQZ8",
+    authDomain: "matheex-comments.firebaseapp.com",
+    projectId: "matheex-comments",
+    storageBucket: "matheex-comments.firebasestorage.app",
+    messagingSenderId: "621126172186",
+    appId: "1:621126172186:web:c86406b2eb15f4bb9fdba3",
+    measurementId: "G-RMV55P3LFK"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const provider = new GoogleAuthProvider();
+
+  const authGate = document.getElementById('auth-gate');
+  const googleBtn = document.getElementById('google-signin-btn');
+  const authError = document.getElementById('auth-error');
+  const signOutBtn = document.getElementById('sign-out-btn');
 
   const form = document.getElementById('contact-form');
+  const nameInput = document.getElementById('name');
+  const emailInput = document.getElementById('email');
+  const userPhoto = document.getElementById('user-photo');
+  const userNameDisplay = document.getElementById('user-name-display');
+  const userEmailDisplay = document.getElementById('user-email-display');
+
+  googleBtn.addEventListener('click', async () => {
+    authError.textContent = '';
+    try{
+      await signInWithPopup(auth, provider);
+    }catch(err){
+      authError.textContent = 'Sign in වුනේ නෑ, ආයෙත් try කරන්න.';
+      console.error(err);
+    }
+  });
+
+  signOutBtn.addEventListener('click', () => signOut(auth));
+
+  onAuthStateChanged(auth, (user) => {
+    if (user){
+      authGate.style.display = 'none';
+      form.classList.add('show');
+      nameInput.value = user.displayName || '';
+      emailInput.value = user.email || '';
+      userPhoto.src = user.photoURL || '';
+      userNameDisplay.textContent = user.displayName || 'Signed in';
+      userEmailDisplay.textContent = user.email || '';
+    } else {
+      authGate.style.display = 'block';
+      form.classList.remove('show');
+    }
+  });
+
+  // ---------------- Form submission ----------------
   const submitBtn = document.getElementById('submit-btn');
   const statusEl = document.getElementById('form-status');
   const successPanel = document.getElementById('success-panel');
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
+    if (!auth.currentUser) return;
+
     submitBtn.disabled = true;
     submitBtn.textContent = 'Sending…';
     statusEl.className = 'form-status';
