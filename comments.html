@@ -422,7 +422,7 @@
     <a href="videos.html">Videos</a>
     <a href="phones.html">Phones</a>
     <a href="comments.html">Comments</a>
-    <a href="contact.html">Business</a>
+    <a href="contact.html">Contact</a>
   </nav>
   <a class="nav-cta" href="https://youtube.com/@matheex?si=MYj39L32cIrYaUPr" target="_blank" rel="noopener">Subscribe</a>
 </header>
@@ -488,7 +488,7 @@
     <a href="https://youtube.com/@matheex?si=MYj39L32cIrYaUPr" target="_blank" rel="noopener">YouTube</a>
     <a href="videos.html">Videos</a>
     <a href="phones.html">Phones</a>
-    <a href="contact.html">Business</a>
+    <a href="contact.html">Contact</a>
   </div>
 </footer>
 
@@ -653,13 +653,20 @@
     }
   });
 
+  // Only this exact email unlocks admin controls (delete / delete-all) —
+  // any other signed-in account (e.g. a visitor who signed in with Google
+  // on the Home/Contact page) is signed out and shown the login form.
+  const ADMIN_EMAIL = "hasithmatheesha184@gmail.com";
+
   onAuthStateChanged(auth, (user) => {
-    isAdmin = !!user;
-    if(user){
+    const isCorrectAdmin = user && user.email === ADMIN_EMAIL;
+    isAdmin = !!isCorrectAdmin;
+    if(isCorrectAdmin){
       adminLoginBox.style.display = "none";
       adminLoggedInBox.style.display = "flex";
       adminWho.textContent = "Logged in: " + user.email;
     }else{
+      if (user) signOut(auth); // wrong account — kick it out silently
       adminLoginBox.style.display = "block";
       adminLoggedInBox.style.display = "none";
     }
