@@ -658,13 +658,19 @@
 
   logoutBtn.addEventListener("click", () => signOut(auth));
 
+  // Only this exact email is allowed into the admin panel — anyone else
+  // (e.g. a visitor who signed in with Google on the Home/Contact page)
+  // is signed out and shown the login gate, even if a session exists.
+  const ADMIN_EMAIL = "hasithmatheesha184@gmail.com";
+
   onAuthStateChanged(auth, (user) => {
-    if (user){
+    if (user && user.email === ADMIN_EMAIL){
       gate.style.display = "none";
       content.classList.add("show");
       whoEl.textContent = "Logged in: " + user.email;
       listenPhoneList();
     } else {
+      if (user) signOut(auth); // wrong account — kick it out silently
       gate.style.display = "block";
       content.classList.remove("show");
     }
