@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /admin.html
+Disallow: /maintenance.html
+
+Sitemap: https://matheex21.github.io/Matheex/sitemap.xml
